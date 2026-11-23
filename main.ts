@@ -267,6 +267,9 @@ function sectionEdit(sec: Section, strict: boolean): Edit {
     const isCreation = oldPath === null || sec.newFileMode;
     const isDeletion = newPath === null || sec.deletedFileMode;
     if (isCreation && newPath !== null) {
+      // Section 10: every path an edit names is checked for safety first — a creation by
+      // `new file mode` can still name a real old path on its `---` line.
+      if (oldPath !== null && !safe(oldPath)) throw new Fail('unsafe', oldPath);
       if (!safe(newPath)) throw new Fail('unsafe', newPath);
       if (tree.get(newPath) !== null) throw new Fail('exists', newPath);
       const created: string[] = [];
@@ -284,6 +287,8 @@ function sectionEdit(sec: Section, strict: boolean): Edit {
     }
     if (isDeletion && oldPath !== null) {
       if (!safe(oldPath)) throw new Fail('unsafe', oldPath);
+      // Likewise a deletion by `deleted file mode` can name a real new path on its `+++` line.
+      if (newPath !== null && !safe(newPath)) throw new Fail('unsafe', newPath);
       if (tree.get(oldPath) === null) throw new Fail('missing', oldPath);
       tree.now.set(oldPath, null);
       return;
