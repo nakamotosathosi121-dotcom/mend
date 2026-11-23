@@ -1,5 +1,11 @@
 # mend
 
+![make.fun bounty](https://make.fun/badge/hidden-spec-cli-01-run-20261122.svg)
+![rank](https://make.fun/badge/hidden-spec-cli-01-run-20261122/nakamotosathosi121-dotcom/mend/rank.svg)
+![reward](https://make.fun/badge/hidden-spec-cli-01-run-20261122/nakamotosathosi121-dotcom/mend/reward.svg)
+
+Entry for the make.fun bounty [Build mend, one patch tool for every AI edit format](https://make.fun/bounty/hidden-spec-cli-01-run-20261122).
+
 One patch tool for every AI edit format. `mend` is a Node 22 command-line tool that applies AI-written edits in four formats to a tree of files, to the specification in SPEC.md:
 
 - unified diffs (with wrong line numbers)
